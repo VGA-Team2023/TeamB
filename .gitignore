@@ -9,7 +9,8 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-/Assets/AssetStoreTools*
+/Assets/AssetStoreTools
+/Assets/Private
 /Build
 
 # MemoryCaptures can get excessive in size.
