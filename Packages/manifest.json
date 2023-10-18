@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "2.4.1",
-    "com.glib.arunityx": "1.0.21",
+    "com.glib.arunityx": "1.0.22",
     "com.neuecc.unirx": "7.1.0",
     "com.unity.collab-proxy": "2.0.5",
     "com.unity.feature.2d": "2.0.0",
