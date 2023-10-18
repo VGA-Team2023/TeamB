@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 559c894376b908f4c8969f2f1f434900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellStatuses: 08
+  _cellStatus: 8

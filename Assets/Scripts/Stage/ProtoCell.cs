@@ -11,15 +11,25 @@ namespace TeamB_TD
 
             [SerializeField] private CellState _cellStatus = CellState.None;
 
-            [System.Serializable, System.Flags]
-            public enum CellState : byte
+            /// <summary>セルステータスに任意のステータスが含まれているかを調べる</summary>
+            /// <param name="status">含まれているかを調べたいセルステータス</param>
+            /// <returns>含まれているかどうか</returns>
+            public bool IsContainsCellState(CellState status)
             {
-                None = 0,
-                Wall = 1,
-                Path = 2,
-                CanPlace = 4,
-                CantPlace = 8,
+                CellState cell = _cellStatus;
+                cell &= status;
+                return cell == status;
             }
+        }
+
+        [System.Serializable, System.Flags]
+        public enum CellState : byte
+        {
+            None = 0,
+            Wall = 1,
+            Path = 2,
+            CanPlace = 4,
+            CannotPlace = 8,
         }
     }
 }
