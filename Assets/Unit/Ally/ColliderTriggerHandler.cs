@@ -6,44 +6,51 @@ using UnityEngine;
 
 namespace TeamB_TD
 {
-    public class ColliderTriggerHandler : MonoBehaviour
+    namespace Unit
     {
-        private List<ISearchTarget> _targets = new List<ISearchTarget>();
-
-        public IReadOnlyList<ISearchTarget> Targets => _targets;
-
-        public event Action<ISearchTarget> OnAddedTarget;
-        public event Action<ISearchTarget> OnRemovedTarget;
-
-        public void RemoveTarget(ISearchTarget target)
+        namespace Search
         {
-            _targets.Remove(target);
-
-            Debug.Log($"{target} Removed:" +
-                $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out ISearchTarget target))
+            public class ColliderTriggerHandler : MonoBehaviour
             {
-                _targets.Add(target);
-                target.OnDead += RemoveTarget;
-                OnAddedTarget?.Invoke(target);
+                private List<ISearchTarget> _targets = new List<ISearchTarget>();
 
-                //Debug.Log($"{target} Removed:\n" +
-                //    $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
-            }
-        }
+                public IReadOnlyList<ISearchTarget> Targets => _targets;
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.TryGetComponent(out ISearchTarget target))
-            {
-                if (_targets.Remove(target)) OnRemovedTarget?.Invoke(target);
+                public event Action<ISearchTarget> OnAddedTarget;
+                public event Action<ISearchTarget> OnRemovedTarget;
 
-                //Debug.Log($"{target} Added:\n" +
-                //    $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
+                public void RemoveTarget(ISearchTarget target)
+                {
+                    _targets.Remove(target);
+
+                    Debug.Log($"{target} Removed:" +
+                        $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
+                }
+
+                private void OnTriggerEnter(Collider other)
+                {
+                    if (other.TryGetComponent(out ISearchTarget target))
+                    {
+                        target.OnDead -= RemoveTarget;
+                        _targets.Add(target);
+                        target.OnDead += RemoveTarget;
+                        OnAddedTarget?.Invoke(target);
+
+                        //Debug.Log($"{target} Removed:\n" +
+                        //    $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
+                    }
+                }
+
+                private void OnTriggerExit(Collider other)
+                {
+                    if (other.TryGetComponent(out ISearchTarget target))
+                    {
+                        if (_targets.Remove(target)) OnRemovedTarget?.Invoke(target);
+
+                        //Debug.Log($"{target} Added:\n" +
+                        //    $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
+                    }
+                }
             }
         }
     }

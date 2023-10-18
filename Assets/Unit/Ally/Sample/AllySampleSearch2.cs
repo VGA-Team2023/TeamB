@@ -1,6 +1,7 @@
 // 日本語対応
 using UnityEngine;
 using System.Collections.Generic;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TeamB_TD
 {
@@ -34,7 +35,11 @@ namespace TeamB_TD
 
                 public IReadOnlyList<ISearchTarget> GetTargets()
                 {
-                    foreach (var old in _targets) old.LostTarget();
+                    foreach (var old in _targets)
+                    {
+                        old.OnDead -= OnDeadTarget;
+                        old.LostTarget();
+                    }
 
                     _targets.Clear();
 
