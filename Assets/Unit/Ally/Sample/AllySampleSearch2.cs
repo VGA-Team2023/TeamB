@@ -1,7 +1,6 @@
 // 日本語対応
-using UnityEngine;
 using System.Collections.Generic;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine;
 
 namespace TeamB_TD
 {
