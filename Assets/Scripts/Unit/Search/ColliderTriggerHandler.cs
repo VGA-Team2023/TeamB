@@ -1,7 +1,6 @@
 // 日本語対応
 using System;
 using System.Collections.Generic;
-using TeamB_TD.Unit.Search;
 using UnityEngine;
 
 namespace TeamB_TD
@@ -12,6 +11,9 @@ namespace TeamB_TD
         {
             public class ColliderTriggerHandler : MonoBehaviour
             {
+                // ColliderTriggerHandlerを使用する際の注意点。
+                // RigidBodyを付ける。
+                // ColliderをTriggerにする。
                 private List<ISearchTarget> _targets = new List<ISearchTarget>();
 
                 public IReadOnlyList<ISearchTarget> Targets => _targets;

@@ -41,11 +41,20 @@ namespace TeamB_TD
                     }
 
                     _targets.Clear();
+                    var inAreaObjects = _colliderTriggerHandler.Targets;
 
-                    if (_colliderTriggerHandler.Targets.Count != 0)
+                    if (inAreaObjects.Count != 0)
                     {
-                        var target = _colliderTriggerHandler.Targets[0];
-                        if (target != null && _targetType.HasFlag(target.UnitType))
+                        ISearchTarget target = null;
+                        for (int i = 0; i < inAreaObjects.Count; i++)
+                        {
+                            if (inAreaObjects[i] != null && _targetType.HasFlag(inAreaObjects[i].UnitType))
+                            {
+                                target = inAreaObjects[i];
+                                break;
+                            }
+                        }
+                        if (target != null)
                         {
                             _targets.Add(target);
                             target.Target();
