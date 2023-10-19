@@ -1,7 +1,6 @@
 // 日本語対応
 using System;
 using System.Collections.Generic;
-using TeamB_TD.Unit.Search;
 using UnityEngine;
 
 namespace TeamB_TD
@@ -12,6 +11,9 @@ namespace TeamB_TD
         {
             public class ColliderTriggerHandler : MonoBehaviour
             {
+                // ColliderTriggerHandlerを使用する際の注意点。
+                // RigidBodyを付ける。
+                // ColliderをTriggerにする。
                 private List<ISearchTarget> _targets = new List<ISearchTarget>();
 
                 public IReadOnlyList<ISearchTarget> Targets => _targets;
@@ -23,8 +25,8 @@ namespace TeamB_TD
                 {
                     _targets.Remove(target);
 
-                    Debug.Log($"{target} Removed:" +
-                        $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
+                    //Debug.Log($"{target} Removed:\n" +
+                    //    $"Current is {string.Join<ISearchTarget>("\n", _targets)}");
                 }
 
                 private void OnTriggerEnter(Collider other)
@@ -46,6 +48,8 @@ namespace TeamB_TD
                     if (other.TryGetComponent(out ISearchTarget target))
                     {
                         if (_targets.Remove(target)) OnRemovedTarget?.Invoke(target);
+
+                        target.OnDead -= RemoveTarget;
 
                         //Debug.Log($"{target} Added:\n" +
                         //    $"Current is {string.Join<ISearchTarget>("\n", _targets)}");

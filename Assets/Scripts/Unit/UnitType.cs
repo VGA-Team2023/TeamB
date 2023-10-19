@@ -9,8 +9,6 @@ namespace TeamB_TD
         [Flags]
         public enum UnitType : int
         {
-            None = 0,
-            Everything = -1,
             Ally = 1,
             Enemy = 2,
         }
