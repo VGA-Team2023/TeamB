@@ -59,6 +59,7 @@ namespace TeamB_TD
 
                 private void OnDeadTarget(ISearchTarget target)
                 {
+                    target.OnDead -= OnDeadTarget;
                     _targets.Remove(target);
                 }
             }
