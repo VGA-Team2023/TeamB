@@ -10,7 +10,7 @@ namespace TeamB_TD
     {
         namespace Ally
         {
-            public class AllySampleSearch : ISearcher
+            public class AllySampleSearch : ISearcher, IDrawableGizmos
             {
                 [SerializeField]
                 private UnitType _targetType;
@@ -65,6 +65,11 @@ namespace TeamB_TD
                 {
                     target.OnDead -= OnDeadTarget;
                     _targets.Remove(target);
+                }
+
+                public void DrawGizmos(GameObject gameObject)
+                {
+                    _overLabBox.OnDrawGizmos(gameObject.transform);
                 }
             }
         }

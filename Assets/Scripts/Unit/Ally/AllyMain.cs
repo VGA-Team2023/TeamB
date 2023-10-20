@@ -39,6 +39,15 @@ namespace TeamB_TD
                     _allyStatus.Update(Time.deltaTime);
                 }
 
+                private void OnDrawGizmos()
+                {
+                    var gizmoDrawer = _searcher as IDrawableGizmos;
+                    if (gizmoDrawer != null)
+                    {
+                        gizmoDrawer.DrawGizmos(this.gameObject);
+                    }
+                }
+
                 public void Damage(float value)
                 {
                     var oldIsDead = _allyStatus.IsDead;
