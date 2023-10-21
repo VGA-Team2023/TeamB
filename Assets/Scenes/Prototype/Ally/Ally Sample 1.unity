@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 2
-  _life: 10
+  _life: 5
 --- !u!1 &1683343685
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 2
-  _life: 10
+  _life: 5
 --- !u!1 &1695176046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitType: 2
-  _life: 10
+  _life: 5
 --- !u!1 &2082245610
 GameObject:
   m_ObjectHideFlags: 0
