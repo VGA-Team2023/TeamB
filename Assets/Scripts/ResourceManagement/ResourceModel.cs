@@ -1,6 +1,5 @@
 using UnityEngine;
 using UniRx;
-using System;
 using System.Collections;
 
 namespace TeamB_TD
@@ -24,7 +23,7 @@ namespace TeamB_TD
             {
                 while (true)
                 {
-                    if(_currentResource.Value < _chargeSpan)
+                    if (_currentResource.Value < _maxResource)
                     {
                         _currentResource.Value++;
                         Debug.Log(_currentResource.Value);
