@@ -13,7 +13,7 @@ namespace TeamB_TD
             [SerializeField] private int _chargeSpan;
             [SerializeField] private IntReactiveProperty _currentResource;
 
-            public IObservable<int> CurrentResourceChanged => _currentResource;
+            public IReadOnlyReactiveProperty<int> CurrentResourceChanged => _currentResource;
 
             private void Start()
             {
@@ -34,9 +34,9 @@ namespace TeamB_TD
             }
 
             /// <summary> Presenterë§Ç©ÇÁåƒÇ—èoÇ∑</summary>
-            public void UseResource()
+            public void UseResource(int value)
             {
-                _currentResource.Value -= 3;
+                _currentResource.Value -= value;
             }
         }
     }
