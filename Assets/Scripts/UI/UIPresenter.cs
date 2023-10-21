@@ -2,13 +2,20 @@ using TeamB_TD.ResourceManagement;
 using UniRx;
 using UnityEngine;
 
-public class UIPresenter : MonoBehaviour
+namespace TeamB_TD
 {
-    [SerializeField] ResourceModel _rm;
-    [SerializeField] UIView _view;
-
-    void Start()
+    namespace UI
     {
-        _rm.CurrentResourceChanged.Subscribe(value => _view.SetCurrentResource(value));
+        public class UIPresenter : MonoBehaviour
+        {
+            [SerializeField] ResourceModel _rm;
+            [SerializeField] UIView _view;
+
+            void Start()
+            {
+                _rm.CurrentResourceChanged.Subscribe(value => _view.SetCurrentResource(value));
+            }
+        }
     }
 }
+
