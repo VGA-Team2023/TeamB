@@ -1,8 +1,8 @@
 // 日本語対応
-using UnityEngine;
 using System;
-using TeamB_TD.Unit.Search;
 using System.Collections.Generic;
+using TeamB_TD.Unit.Search;
+using UnityEngine;
 
 namespace TeamB_TD
 {
@@ -21,9 +21,6 @@ namespace TeamB_TD
                     _attackPower = attackPower;
                     _attackInterval = attackInterval;
                     _attackIntervalTimer = attackIntervalTimer;
-
-                    _searcher = null;
-                    _attackTargets = null;
                 }
 
                 [SerializeField]
@@ -49,16 +46,23 @@ namespace TeamB_TD
                 public float AttackInterval => _attackInterval;
                 public float AttackIntervalTimer => _attackIntervalTimer;
 
-                public bool IsAttackable => _attackIntervalTimer <= 0f && _searcher.IsExistTarget;
+                public bool IsAttackable => _attackIntervalTimer <= 0f;
                 public bool IsDead => _currentLife <= 0f;
 
-                private ISearcher _searcher;
-                private List<ISearchTarget> _attackTargets;
-
-                public void Initialize(ISearcher searcher)
+                public void Update(float deltaTime)
                 {
-                    _searcher = searcher;
-                    _attackTargets = new List<ISearchTarget>();
+                    _attackIntervalTimer -= deltaTime;
+                    if (_attackIntervalTimer < 0f) _attackIntervalTimer = 0f;
+                }
+
+                public void Attack(IReadOnlyList<ISearchTarget> targets)
+                {
+                    _attackIntervalTimer = _attackInterval;
+
+                    foreach (var target in targets)
+                    {
+                        target.GetDamageable().Damage(_attackPower);
+                    }
                 }
 
                 public void Damage(float value)
@@ -75,34 +79,10 @@ namespace TeamB_TD
                     if (_currentLife > _maxLife) _currentLife = _maxLife;
                 }
 
-                public void Attack(IReadOnlyList<ISearchTarget> targets)
-                {
-                    _attackIntervalTimer = _attackInterval;
-
-                    foreach (var target in targets)
-                    {
-                        target.GetDamageable().Damage(_attackPower);
-                    }
-                }
-
                 public void Clear()
                 {
                     _currentLife = _maxLife;
                     _attackIntervalTimer = _attackInterval;
-                }
-
-                public void Update(float deltaTime)
-                {
-                    _attackTargets.Clear();
-                    _attackTargets.AddRange(_searcher.GetTargets());
-
-                    if (IsAttackable)
-                    {
-                        Attack(_attackTargets);
-                    }
-
-                    _attackIntervalTimer -= deltaTime;
-                    if (_attackIntervalTimer < 0f) _attackIntervalTimer = 0f;
                 }
             }
         }
