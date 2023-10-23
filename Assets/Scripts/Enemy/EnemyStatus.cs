@@ -7,7 +7,7 @@ namespace TeamB_TD
     namespace Enemy
     {
         [Serializable]
-        public struct EnemyStatus
+        public class EnemyStatus
         {
             /// <summary>最大体力</summary>
             public float MaxLife => _maxLife;
@@ -23,26 +23,21 @@ namespace TeamB_TD
             public float SpeedFactor { get => _speedFactor; set => _speedFactor = value; }
 
             [Header("体力")]
-            [SerializeField] private float _maxLife;
+            [SerializeReference] private float _maxLife = 1.0f;
             [Header("攻撃力")]
-            [SerializeField] private float _attackPower;
+            [SerializeReference] private float _attackPower = 1.0f;
             [Header("攻撃間隔")]
-            [SerializeField] private float _attackInterval;
+            [SerializeReference] private float _attackInterval = 1.0f;
             [Header("移動速度")]
-            [SerializeField] private float _moveSpeed;
+            [SerializeReference] private float _moveSpeed = 1.0f;
             [Header("移動速度にかける倍率")]
-            [SerializeField] private float _speedFactor;
+            [SerializeReference] private float _speedFactor = 1.0f;
+            [HideInInspector]
+            [SerializeReference] private float _currentLife = 1.0f;
 
-            private float _currentLife;
-
-            public EnemyStatus(float life, float power, float interval, float speed, float factor = 1.0f)
+            public EnemyStatus()
             {
-                _maxLife = life;
-                _currentLife = life;
-                _attackPower = power;
-                _attackInterval = interval;
-                _moveSpeed = speed;
-                _speedFactor = factor;
+                _currentLife = _maxLife;
             }
 
             public void Damage(float damage)
