@@ -7,10 +7,10 @@ namespace TeamB_TD
 {
     namespace Stage
     {
-        public class ProtoStage
+        public class Stage
         {
-            private IObjectPlaceable[,] _stageCells;
-            public IObjectPlaceable[,] StageCells => _stageCells;
+            private IStageCell[,] _stageCells;
+            public IStageCell[,] StageCells => _stageCells;
 
             public bool IsInStage(int yPos, int xPos)
             {
@@ -19,7 +19,7 @@ namespace TeamB_TD
                     yPos < StageCells.GetLength(0) && xPos < StageCells.GetLength(1);
             }
 
-            public bool TryGetCell(int yPos, int xPos, out IObjectPlaceable cell)
+            public bool TryGetCell(int yPos, int xPos, out IStageCell cell)
             {
                 if (IsInStage(yPos, xPos))
                 {
@@ -32,9 +32,20 @@ namespace TeamB_TD
                 return cell != null;
             }
 
-            public event Action<IStageCell> OnCreatedCell;
+            public void CreateStage(int[,] stageData)
+            {
+                _stageCells = new IStageCell[stageData.GetLength(0), stageData.GetLength(1)];
 
-            public IStageCell CreateCell(int yPos, int xPos)
+                for (int y = 0; y < stageData.GetLength(0); y++)
+                {
+                    for (int x = 0; x < stageData.GetLength(1); x++)
+                    {
+                        _stageCells[y, x] = CreateCell(y, x, stageData[y, x]);
+                    }
+                }
+            }
+
+            public IStageCell CreateCell(int yPos, int xPos, int initialCellState)
             {
                 if (!IsInStage(yPos, xPos)) throw new ArgumentOutOfRangeException(nameof(yPos) + ", " + nameof(xPos));
                 if (_stageCells[yPos, xPos] != null)
@@ -44,10 +55,9 @@ namespace TeamB_TD
                         $"yPos: {yPos}, xPos: {xPos}");
                 }
 
-                var cell = new ProtoCell2();
+                var cell = new StageCell(initialCellState);
                 _stageCells[yPos, xPos] = cell;
 
-                OnCreatedCell(cell); // ステージ見た目管理クラスが検知して見た目の生成を行う。
                 return cell;
             }
 
@@ -56,13 +66,17 @@ namespace TeamB_TD
                 throw new NotImplementedException();
             }
 
-            public PlaceableObject CreatePlaceObject(PlaceableObject prefab, int yPos, int xPos)
+            public UnitBehaviour CreateUnit(UnitBehaviour prefab, int yPos, int xPos)
             {
                 if (!prefab) throw new ArgumentNullException(nameof(prefab));
-                if (!TryGetCell(yPos, xPos, out IObjectPlaceable cell)) throw new ArgumentException(nameof(yPos) + ", " + nameof(xPos));
+                if (!TryGetCell(yPos, xPos, out IStageCell cell)) throw new ArgumentException(nameof(yPos) + ", " + nameof(xPos));
+
+                var placeInterface = cell as IUnitPlaceable;
+                if (placeInterface == null) throw new ArgumentException(nameof(placeInterface));
 
                 var instance = GameObject.Instantiate(prefab);
-                cell.Place(instance);
+                instance.Initialze(this, yPos, xPos);
+                placeInterface.Place(instance);
                 return instance;
             }
 
