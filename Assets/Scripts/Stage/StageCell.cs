@@ -1,12 +1,11 @@
 //日本語対応
-using TeamB_TD.Player;
 using TeamB_TD.Stage.Place;
 
 namespace TeamB_TD
 {
     namespace Stage
     {
-        public class StageCell : IStageCell, IUnitPlaceable, IFocusable
+        public class StageCell : IStageCell, IUnitPlaceable
         {
             public StageCell(int initialCellState)
             {
