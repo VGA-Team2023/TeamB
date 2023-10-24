@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace StageManagement
     {
         public class StageCellView : MonoBehaviour
         {

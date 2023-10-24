@@ -1,11 +1,11 @@
 //日本語対応
 using System;
-using TeamB_TD.Stage.Place;
+using TeamB_TD.Unit;
 using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace StageManagement
     {
         public class Stage
         {

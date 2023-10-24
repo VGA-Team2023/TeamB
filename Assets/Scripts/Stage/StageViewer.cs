@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace StageManagement
     {
         public class StageViewer
         {
