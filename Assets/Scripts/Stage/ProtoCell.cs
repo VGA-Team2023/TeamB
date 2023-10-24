@@ -8,6 +8,8 @@ namespace TeamB_TD
         public class ProtoCell : MonoBehaviour
         {
             public CellState CellStatus => _cellStatus;
+            public Vector3 GenerateMuzzle =>
+                new Vector3(0f, transform.position.y + transform.localScale.y / 2, 0f);
 
             [SerializeField] private CellState _cellStatus = CellState.None;
 
@@ -16,9 +18,7 @@ namespace TeamB_TD
             /// <returns>含まれているかどうか</returns>
             public bool IsContainsCellState(CellState status)
             {
-                CellState cell = _cellStatus;
-                cell &= status;
-                return cell == status;
+                return _cellStatus.HasFlag(status);
             }
         }
 
