@@ -1,16 +1,17 @@
-// 日本語対応
+//日本語対応
 using TeamB_TD.Player;
 
 namespace TeamB_TD
 {
-    namespace Unit
+    namespace Stage
     {
         namespace Place
         {
             public interface IObjectPlaceable : IFocusable
             {
+                bool IsPlaced { get; }
                 PlaceableObject PlacedObject { get; }
-                void OnPlace(PlaceableObject prefab);
+                void Place(PlaceableObject placedObject);
             }
         }
     }
