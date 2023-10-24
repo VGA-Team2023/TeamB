@@ -22,12 +22,11 @@ namespace TeamB_TD
 
                 private int _targetCount = 0;
                 private List<ISearchTarget> _searchResults;
-                private Action<ISearchTarget> _onDead;
 
                 public AllyStatus AllyStatus => _allyStatus;
                 public ISearcher Searcher => _searcher;
                 public UnitType UnitType => _unitType;
-                public Action<ISearchTarget> OnDead { get => _onDead; set => _onDead = value; }
+                public event Action<ISearchTarget> OnDead;
 
                 public int TargetCount => _targetCount;
 
@@ -71,7 +70,7 @@ namespace TeamB_TD
                     if (!oldIsDead && _allyStatus.IsDead)
                     {
                         Debug.Log($"{gameObject.name} OnDead");
-                        _onDead?.Invoke(this);
+                        OnDead?.Invoke(this);
                     }
                 }
 

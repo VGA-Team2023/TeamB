@@ -13,12 +13,11 @@ public class SampleEnemy : MonoBehaviour, ISearchTarget, IDamageable
     private float _life = 10f;
 
     private int _targetCount = 0;
-    private Action<ISearchTarget> _onDead;
 
     public UnitType UnitType => _unitType;
-    public Action<ISearchTarget> OnDead { get => _onDead; set => _onDead = value; }
+    public event Action<ISearchTarget> OnDead;
 
-    public int TargetCount => throw new NotImplementedException();
+    public int TargetCount => _targetCount;
 
     private MeshRenderer _meshRenderer;
 
@@ -33,7 +32,7 @@ public class SampleEnemy : MonoBehaviour, ISearchTarget, IDamageable
         _life -= value;
         if (old > 0 && _life <= 0)
         {
-            _onDead?.Invoke(this);
+            OnDead?.Invoke(this);
             Destroy(this.gameObject); return;
         }
     }
@@ -47,7 +46,17 @@ public class SampleEnemy : MonoBehaviour, ISearchTarget, IDamageable
     {
         _targetCount++;
         if (_targetCount > 0)
-            _meshRenderer.material.color = Color.red;
+        {
+            try
+            {
+                _meshRenderer.material.color = Color.red;
+            }
+            catch (MissingReferenceException)
+            {
+                Debug.Log($"Missing...");
+                return;
+            }
+        }
     }
 
     public void LostTarget()

@@ -56,9 +56,9 @@ namespace TeamB_TD
                         }
                         if (target != null)
                         {
-                            _targets.Add(target);
-                            target.Target();
                             target.OnDead += OnDeadTarget;
+                            target.Target();
+                            _targets.Add(target);
                         }
                     }
 
@@ -68,6 +68,7 @@ namespace TeamB_TD
                 private void OnDeadTarget(ISearchTarget target)
                 {
                     target.OnDead -= OnDeadTarget;
+                    target.LostTarget();
                     _targets.Remove(target);
                 }
             }
