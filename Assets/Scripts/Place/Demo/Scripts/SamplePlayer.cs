@@ -1,7 +1,7 @@
 // 日本語対応
 using System;
 using TeamB_TD.Player;
-using TeamB_TD.Resouce;
+using TeamB_TD.ResourceManagement;
 using TeamB_TD.Unit.Demo;
 using UnityEngine;
 
