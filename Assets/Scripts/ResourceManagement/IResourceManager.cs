@@ -2,7 +2,7 @@
 
 namespace TeamB_TD
 {
-    namespace Resouce
+    namespace ResourceManagement
     {
         public interface IResourceManager
         {

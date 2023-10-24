@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 using TeamB_TD.Player;
-using TeamB_TD.Resouce;
+using TeamB_TD.ResourceManagement;
 
 namespace TeamB_TD
 {

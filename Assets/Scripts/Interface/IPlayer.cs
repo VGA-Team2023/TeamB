@@ -1,5 +1,5 @@
 // 日本語対応
-using TeamB_TD.Resouce;
+using TeamB_TD.ResourceManagement;
 
 namespace TeamB_TD
 {
