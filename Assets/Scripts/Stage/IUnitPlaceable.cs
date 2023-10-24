@@ -1,17 +1,15 @@
 //日本語対応
+using TeamB_TD.Unit;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace Unit
     {
-        namespace Place
+        public interface IUnitPlaceable
         {
-            public interface IUnitPlaceable
-            {
-                bool IsPlaced { get; }
-                UnitBehaviour PlacedObject { get; }
-                void Place(UnitBehaviour placedObject);
-            }
+            bool IsPlaced { get; }
+            UnitBehaviour PlacedObject { get; }
+            void Place(UnitBehaviour placedObject);
         }
     }
 }

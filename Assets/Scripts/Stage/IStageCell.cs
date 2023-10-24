@@ -3,7 +3,7 @@ using TeamB_TD.Player;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace StageManagement
     {
         public interface IStageCell : IFocusable
         {

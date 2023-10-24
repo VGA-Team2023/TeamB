@@ -1,9 +1,10 @@
 //日本語対応
-using TeamB_TD.Stage.Place;
+using TeamB_TD.Unit;
+using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace StageManagement
     {
         public class StageCell : IStageCell, IUnitPlaceable
         {
@@ -26,12 +27,12 @@ namespace TeamB_TD
 
             public void Focus()
             {
-                // フォーカスされた時に呼び出される。
+                // Debug.Log("focused");
             }
 
             public void Unfocus()
             {
-                // フォーカスから外れた時に呼び出される。
+                // Debug.Log("unfocused");
             }
         }
     }
