@@ -28,10 +28,10 @@ namespace TeamB_TD
 
                 ProtoCell cell = null;
 
-                for (int r = 0; r < _stage.Map.GetLength(0); r++)
-                    for (int c = 0; c < _stage.Map.GetLength(1); c++)
+                for (int r = 0; r < _stage.SampleStageData0.GetLength(0); r++)
+                    for (int c = 0; c < _stage.SampleStageData0.GetLength(1); c++)
                     {
-                        cell = _stage.Map[r, c] switch
+                        cell = _stage.SampleStageData0[r, c] switch
                         {
                             0 => _wall,
                             1 => _path,
@@ -47,7 +47,7 @@ namespace TeamB_TD
             /// <param name="c">列番号</param>
             /// <returns>変換された座標</returns>
             private Vector3 ConvertSenter(int r, int c)
-                => new Vector3(r - _stage.Map.GetLength(0) / 2, 0f, -(c - _stage.Map.GetLength(1) / 2));
+                => new Vector3(r - _stage.SampleStageData0.GetLength(0) / 2, 0f, -(c - _stage.SampleStageData0.GetLength(1) / 2));
         }
     }
 }

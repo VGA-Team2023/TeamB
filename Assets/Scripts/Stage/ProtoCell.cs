@@ -7,16 +7,16 @@ namespace TeamB_TD
 {
     namespace Stage
     {
-        public class ProtoCell : MonoBehaviour, IObjectPlaceable
+        public class ProtoCell : MonoBehaviour, IUnitPlaceable
         {
             [SerializeField]
             private CellState _cellStatus = CellState.None;
 
-            private PlaceableObject _placedObject = null;
+            private Place.UnitBehaviour _placedObject = null;
 
             public CellState CellStatus => _cellStatus;
             public Vector3 GenerateMuzzle => new Vector3(0f, transform.position.y + transform.localScale.y / 2, 0f);
-            public PlaceableObject PlacedObject => _placedObject;
+            public Place.UnitBehaviour PlacedObject => _placedObject;
             public bool IsPlaced => _placedObject != null;
 
             private void OnMouseEnter()
@@ -44,7 +44,7 @@ namespace TeamB_TD
                 Debug.Log($"{gameObject.name} is unfocused");
             }
 
-            public void Place(PlaceableObject placedObject)
+            public void Place(Place.UnitBehaviour placedObject)
             {
                 _placedObject = placedObject;
             }

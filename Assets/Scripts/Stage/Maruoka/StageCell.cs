@@ -1,19 +1,26 @@
 //日本語対応
+using TeamB_TD.Player;
 using TeamB_TD.Stage.Place;
 
 namespace TeamB_TD
 {
     namespace Stage
     {
-        public class ProtoCell2 : IStageCell, IObjectPlaceable
+        public class StageCell : IStageCell, IUnitPlaceable, IFocusable
         {
-            private PlaceableObject _placedObject = null;
+            public StageCell(int initialCellState)
+            {
+                _cellStatus = (CellStatus)initialCellState;
+            }
 
+            private CellStatus _cellStatus;
+            private UnitBehaviour _placedObject = null;
+
+            public CellStatus Status => _cellStatus;
+            public UnitBehaviour PlacedObject => _placedObject;
             public bool IsPlaced => _placedObject;
 
-            public PlaceableObject PlacedObject => _placedObject;
-
-            public void Place(PlaceableObject placedObject)
+            public void Place(UnitBehaviour placedObject)
             {
                 _placedObject = placedObject;
             }
