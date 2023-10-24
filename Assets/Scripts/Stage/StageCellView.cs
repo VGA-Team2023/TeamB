@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace StageManagement
     {
         public class StageCellView : MonoBehaviour
         {
@@ -24,14 +24,18 @@ namespace TeamB_TD
             [SerializeField]
             private Color _cellStatus3;
 
-            public void Initialze(CellStatus cellStatus)
+            private IStageCell _stageCell = null;
+
+            public void Initialze(IStageCell stageCell)
             {
+                _stageCell = stageCell;
+
                 Color color;
-                if (cellStatus.HasFlag(CellStatus.Moveable | CellStatus.Placeable))
+                if (stageCell.Status.HasFlag(CellStatus.Moveable | CellStatus.Placeable))
                     color = _cellStatus3;
-                else if (cellStatus.HasFlag(CellStatus.Moveable))
+                else if (stageCell.Status.HasFlag(CellStatus.Moveable))
                     color = _cellStatus2;
-                else if (cellStatus.HasFlag(CellStatus.Placeable))
+                else if (stageCell.Status.HasFlag(CellStatus.Placeable))
                     color = _cellStatus1;
                 else
                     color = _cellStatus0;
@@ -39,6 +43,16 @@ namespace TeamB_TD
                 if (_image) _image.color = color;
                 if (_spriteRenderer) _spriteRenderer.color = color;
                 if (_meshRenderer) _meshRenderer.material.color = color;
+            }
+
+            private void OnMouseEnter()
+            {
+                _stageCell.Focus();
+            }
+
+            private void OnMouseExit()
+            {
+                _stageCell.Unfocus();
             }
         }
     }
