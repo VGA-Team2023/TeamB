@@ -3,7 +3,7 @@ using System;
 
 namespace TeamB_TD
 {
-    namespace StageManagement
+    namespace Stage
     {
         public class StageBlueprint // ステージの設計図
         {

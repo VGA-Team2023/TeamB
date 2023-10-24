@@ -3,7 +3,7 @@ using System;
 
 namespace TeamB_TD
 {
-    namespace StageManagement
+    namespace Stage
     {
         [Serializable]
         [Flags]

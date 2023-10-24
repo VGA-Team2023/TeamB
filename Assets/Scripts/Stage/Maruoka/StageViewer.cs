@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace StageManagement
+    namespace Stage
     {
         public class StageViewer
         {
@@ -14,7 +14,7 @@ namespace TeamB_TD
                     for (int x = 0; x < stage.StageCells.GetLength(1); x++)
                     {
                         var instance = GameObject.Instantiate(prefab, new Vector3(x, -y, 0f), Quaternion.identity);
-                        instance.Initialze(stage.StageCells[y, x]);
+                        instance.Initialze(stage.StageCells[y, x].Status);
                     }
                 }
             }

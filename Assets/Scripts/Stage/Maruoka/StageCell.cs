@@ -1,12 +1,12 @@
 //日本語対応
-using UnityEngine;
-using TeamB_TD.Unit;
+using TeamB_TD.Player;
+using TeamB_TD.Stage.Place;
 
 namespace TeamB_TD
 {
-    namespace StageManagement
+    namespace Stage
     {
-        public class StageCell : IStageCell, IUnitPlaceable
+        public class StageCell : IStageCell, IUnitPlaceable, IFocusable
         {
             public StageCell(int initialCellState)
             {
@@ -27,12 +27,12 @@ namespace TeamB_TD
 
             public void Focus()
             {
-                Debug.Log($"focused");
+                // フォーカスされた時に呼び出される。
             }
 
             public void Unfocus()
             {
-                Debug.Log($"unfocused");
+                // フォーカスから外れた時に呼び出される。
             }
         }
     }

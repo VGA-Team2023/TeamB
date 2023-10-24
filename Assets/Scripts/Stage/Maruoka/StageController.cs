@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace StageManagement
+    namespace Stage
     {
         public class StageController : MonoBehaviour
         {

@@ -1,12 +1,10 @@
 //日本語対応
 
-using TeamB_TD.Player;
-
 namespace TeamB_TD
 {
-    namespace StageManagement
+    namespace Stage
     {
-        public interface IStageCell : IFocusable
+        public interface IStageCell
         {
             CellStatus Status { get; }
         }
