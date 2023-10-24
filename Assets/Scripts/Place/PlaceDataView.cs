@@ -1,12 +1,13 @@
 // 日本語対応
 using System;
+using TeamB_TD.Stage.Place;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace TeamB_TD
 {
-    namespace Unit
+    namespace Stage
     {
         namespace Place
         {
@@ -47,7 +48,8 @@ namespace TeamB_TD
 
                 public void OnPointerClick(PointerEventData eventData)
                 {
-                    _placeData.Place();
+                    // Stageに生成の責任を渡す。
+                    // _placeData.Place();
                 }
 
                 public void OnPointerEnter(PointerEventData eventData)

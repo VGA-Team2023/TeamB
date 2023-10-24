@@ -6,7 +6,7 @@ using TeamB_TD.Resouce;
 
 namespace TeamB_TD
 {
-    namespace Unit
+    namespace Stage
     {
         namespace Place
         {
@@ -31,22 +31,6 @@ namespace TeamB_TD
                 public void Initialize(IPlayer player)
                 {
                     _player = player;
-                }
-
-                public void Place()
-                {
-                    // コストに対してリソースが足りるかどうかチェックする。
-                    // 足りなかったら何もしない。
-                    if (!(ResourceManager.CurrentResource > _cost)) return;
-
-                    // フォーカスされているオブジェクトがオブジェクト配置可能インターフェースでなければリターン。
-                    // フォーカスされているIObjectPlaceableにオブジェクトが配置済みであればリターン。
-                    var stageCell = FocusItem as IObjectPlaceable;
-                    if (stageCell == null || stageCell.PlacedObject != null) return;
-
-                    // 足りたらセルに配置してリソースを減らす。
-                    ResourceManager.UseResource(_cost);
-                    stageCell.OnPlace(_placeObjectPrefab);
                 }
             }
         }

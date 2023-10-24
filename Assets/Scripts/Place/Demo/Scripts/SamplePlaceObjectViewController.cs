@@ -1,40 +1,38 @@
 // 日本語対応
+using TeamB_TD.Stage.Place;
 using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace Unit
+    namespace Place
     {
-        namespace Place
+        namespace Demo
         {
-            namespace Demo
+            public class SamplePlaceObjectViewController : MonoBehaviour
             {
-                public class SamplePlaceObjectViewController : MonoBehaviour
+                [SerializeField]
+                private PlaceData[] _placeDataCollection;
+                [SerializeField]
+                private Transform _viewParent;
+                [SerializeField]
+                private PlaceDataView _viewPrefab;
+
+                [SerializeField]
+                private SamplePlayer _samplePlayer; // テスト用プレイヤー
+
+                private void Start()
                 {
-                    [SerializeField]
-                    private PlaceData[] _placeDataCollection;
-                    [SerializeField]
-                    private Transform _viewParent;
-                    [SerializeField]
-                    private PlaceDataView _viewPrefab;
-
-                    [SerializeField]
-                    private SamplePlayer _samplePlayer; // テスト用プレイヤー
-
-                    private void Start()
+                    foreach (PlaceData data in _placeDataCollection)
                     {
-                        foreach (PlaceData data in _placeDataCollection)
-                        {
-                            data.Initialize(_samplePlayer);
-                            CreateView(data);
-                        }
+                        data.Initialize(_samplePlayer);
+                        CreateView(data);
                     }
+                }
 
-                    private void CreateView(PlaceData data)
-                    {
-                        var instance = Instantiate(_viewPrefab, _viewParent);
-                        instance.Initialize(data);
-                    }
+                private void CreateView(PlaceData data)
+                {
+                    var instance = Instantiate(_viewPrefab, _viewParent);
+                    instance.Initialize(data);
                 }
             }
         }

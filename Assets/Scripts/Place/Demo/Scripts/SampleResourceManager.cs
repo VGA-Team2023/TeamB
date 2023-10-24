@@ -5,24 +5,21 @@ using System;
 
 namespace TeamB_TD
 {
-    namespace Unit
+    namespace Place
     {
-        namespace Place
+        namespace Demo
         {
-            namespace Demo
+            [Serializable]
+            public class SampleResourceManager : IResourceManager
             {
-                [Serializable]
-                public class SampleResourceManager : IResourceManager
+                [SerializeField]
+                private int _currentResource;
+
+                public int CurrentResource => _currentResource;
+
+                public void UseResource(int value)
                 {
-                    [SerializeField]
-                    private int _currentResource;
-
-                    public int CurrentResource => _currentResource;
-
-                    public void UseResource(int value)
-                    {
-                        _currentResource -= value;
-                    }
+                    _currentResource -= value;
                 }
             }
         }

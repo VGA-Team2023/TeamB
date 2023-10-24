@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace Unit
+    namespace Stage
     {
         namespace Place
         {
