@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering;
+﻿using UnityEngine;
 
 namespace TeamB_TD
 {
@@ -20,7 +17,9 @@ namespace TeamB_TD
             private bool _isDestroyed = false;
 
             public float CurrentHp => _currentHp;
-            
+
+            public bool IsDestroyed => _isDestroyed;
+
             void Start()
             {
                 Initialize();
