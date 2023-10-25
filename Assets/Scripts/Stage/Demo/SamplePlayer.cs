@@ -2,13 +2,12 @@
 using System;
 using TeamB_TD.Player;
 using TeamB_TD.ResourceManagement;
-using TeamB_TD.StageManagement;
 using TeamB_TD.Unit.PlaceDemo;
 using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace Stage
+    namespace StageManagement
     {
         namespace Demo
         {
