@@ -15,6 +15,7 @@ namespace TeamB_TD
                     {
                         var instance = GameObject.Instantiate(prefab, new Vector3(x, -y, 0f), Quaternion.identity);
                         instance.Initialze(stage.StageCells[y, x]);
+                        stage.StageCells[y, x].AttachView(instance);
                     }
                 }
             }
