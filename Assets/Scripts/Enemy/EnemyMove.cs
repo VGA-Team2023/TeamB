@@ -7,13 +7,13 @@ namespace TeamB_TD
 {
     namespace Enemy
     {
-        public class ProtoEnemyMove : MonoBehaviour
+        public class EnemyMove : MonoBehaviour
         {
             private EnemyStatus _status = new();
 
             private void Start()
             {
-                if (TryGetComponent(out ProtoEnemyController controller)) _status = controller.EnemyStatus;
+                if (TryGetComponent(out EnemyController controller)) _status = controller.EnemyStatus;
                 else Debug.Log("ProtoEnemyController is not found"); // 参照の取得が確認出来たら削除する
             }
 

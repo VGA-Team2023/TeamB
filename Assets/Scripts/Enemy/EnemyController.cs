@@ -3,8 +3,8 @@ using TeamB_TD.Enemy;
 using UnityEngine;
 
 //日本語対応
-[RequireComponent(typeof(ProtoEnemyAttack), typeof(ProtoEnemyMove))]
-public class ProtoEnemyController : MonoBehaviour
+[RequireComponent(typeof(EnemyAttack), typeof(EnemyMove))]
+public class EnemyController : MonoBehaviour
 {
     public EnemyStatus EnemyStatus => _status;
 

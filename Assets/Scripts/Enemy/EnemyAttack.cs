@@ -10,7 +10,7 @@ namespace TeamB_TD
 {
     namespace Enemy
     {
-        public class ProtoEnemyAttack : MonoBehaviour, IDamageable, ISearchTarget, ISearcher
+        public class EnemyAttack : MonoBehaviour, IDamageable, ISearchTarget, ISearcher
         {
             public UnitType UnitType => UnitType.Enemy;
 
@@ -28,7 +28,7 @@ namespace TeamB_TD
 
             private void Start()
             {
-                if (TryGetComponent(out ProtoEnemyController controller))
+                if (TryGetComponent(out EnemyController controller))
                 {
                     _status = controller.EnemyStatus;
                 }
