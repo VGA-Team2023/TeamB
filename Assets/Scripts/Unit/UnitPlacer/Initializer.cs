@@ -11,7 +11,7 @@ namespace TeamB_TD
             public class Initializer : MonoBehaviour
             {
                 [SerializeField]
-                private SamplePlayer _player;
+                private Stage.Demo.SamplePlayer _player;
                 [SerializeField]
                 private UnitPlaceManager _placeManager;
 

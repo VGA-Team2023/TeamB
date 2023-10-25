@@ -15,16 +15,18 @@ namespace TeamB_TD
             private Stage _stage = new Stage();
             private StageViewer _stageViewer = new StageViewer();
 
+            public Stage Stage => _stage;
+
+            private void Awake()
+            {
+                CreateStage(0);
+            }
+
             public void CreateStage(int stageNumber)
             {
                 var stageData = _stageBlueprint.GetStageData(stageNumber);
                 _stage.CreateStage(stageData);
                 _stageViewer.CreateView(_stage, _viewPrefab);
-            }
-
-            private void Start()
-            {
-                CreateStage(0);
             }
         }
     }

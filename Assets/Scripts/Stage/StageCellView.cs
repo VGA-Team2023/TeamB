@@ -24,7 +24,10 @@ namespace TeamB_TD
             [SerializeField]
             private Color _cellStatus3;
 
-            IStageCell _stageCell = null;
+            private IStageCell _stageCell = null;
+            private Color _nomalColor;
+            private Color _focusedColor = Color.red;
+
             public GameObject GameObject => this.gameObject;
 
             public void Initialze(IStageCell stageCell)
@@ -41,9 +44,27 @@ namespace TeamB_TD
                 else
                     color = _cellStatus0;
 
+                _nomalColor = color;
                 if (_image) _image.color = color;
                 if (_spriteRenderer) _spriteRenderer.color = color;
                 if (_meshRenderer) _meshRenderer.material.color = color;
+
+                _stageCell.OnFocused += Focus;
+                _stageCell.OnUnfocused += Unfocus;
+            }
+
+            private void Focus()
+            {
+                if (_image) _image.color = _focusedColor;
+                if (_spriteRenderer) _spriteRenderer.color = _focusedColor;
+                if (_meshRenderer) _meshRenderer.material.color = _focusedColor;
+            }
+
+            private void Unfocus()
+            {
+                if (_image) _image.color = _nomalColor;
+                if (_spriteRenderer) _spriteRenderer.color = _nomalColor;
+                if (_meshRenderer) _meshRenderer.material.color = _nomalColor;
             }
 
             private void OnMouseEnter()

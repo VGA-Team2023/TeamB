@@ -1,4 +1,5 @@
 //日本語対応
+using System;
 using TeamB_TD.Unit;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ namespace TeamB_TD
             private UnitBehaviour _placedObject;
             private IStageCellView _stageCellView;
 
+            public event Action OnFocused;
+            public event Action OnUnfocused;
+
             public int YPos => _yPos;
             public int XPos => _xPos;
             public CellStatus Status => _cellStatus;
@@ -40,11 +44,13 @@ namespace TeamB_TD
             public void Focus()
             {
                 // Debug.Log("focused");
+                OnFocused?.Invoke();
             }
 
             public void Unfocus()
             {
                 // Debug.Log("unfocused");
+                OnUnfocused?.Invoke();
             }
         }
     }

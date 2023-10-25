@@ -7,7 +7,7 @@ namespace TeamB_TD
     namespace Unit
     {
         [Serializable]
-        public class PlaceUnitSelector
+        public class PlaceUnitSelector // テスト用 命令系統自体はこんな感じ https://app.diagrams.net/#G1FMsNkqkVrhwQpBWjdZCOCF4YfSQg3bDw
         {
             [SerializeField]
             private PlaceUnitSelectorView _viewPrefab;
@@ -15,7 +15,7 @@ namespace TeamB_TD
             private Transform _viewParent;
 
             private PlaceUnitSelectorView _current;
-            public PlaceUnitSelectorView Current => _current;
+            public PlaceUnitSelectorView Current => _current; // 現在選択中のユニット
 
             public void CreateView(UnitBehaviour unitPrefab)
             {
