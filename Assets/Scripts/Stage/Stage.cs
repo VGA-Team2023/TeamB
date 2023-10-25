@@ -55,34 +55,10 @@ namespace TeamB_TD
                         $"yPos: {yPos}, xPos: {xPos}");
                 }
 
-                var cell = new StageCell(initialCellState);
+                var cell = new StageCell(yPos, xPos, initialCellState);
                 _stageCells[yPos, xPos] = cell;
 
                 return cell;
-            }
-
-            public void DeleteCell()
-            {
-                throw new NotImplementedException();
-            }
-
-            public UnitBehaviour CreateUnit(UnitBehaviour prefab, int yPos, int xPos)
-            {
-                if (!prefab) throw new ArgumentNullException(nameof(prefab));
-                if (!TryGetCell(yPos, xPos, out IStageCell cell)) throw new ArgumentException(nameof(yPos) + ", " + nameof(xPos));
-
-                var placeInterface = cell as IUnitPlaceable;
-                if (placeInterface == null) throw new ArgumentException(nameof(placeInterface));
-
-                var instance = GameObject.Instantiate(prefab);
-                instance.Initialze(this, yPos, xPos);
-                placeInterface.Place(instance);
-                return instance;
-            }
-
-            public void DeletePlacedObject()
-            {
-                throw new NotImplementedException();
             }
         }
     }
