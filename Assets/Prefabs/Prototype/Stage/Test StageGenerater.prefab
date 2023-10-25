@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2819429713455797570}
-  - component: {fileID: 8028522303733189550}
+  - component: {fileID: 8323511305498823581}
   m_Layer: 0
   m_Name: Test StageGenerater
   m_TagString: Untagged
@@ -30,9 +30,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8028522303733189550
+--- !u!114 &8323511305498823581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8133578874409381488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec08dd31e321fe842ada094a93e3c2e3, type: 3}
+  m_Script: {fileID: 11500000, guid: 9954489ab66f4b041a5fa51bbda74a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _wall: {fileID: 4654131870615173365, guid: 9562fa5f7cc37b24d9e41108404708b8, type: 3}
-  _path: {fileID: 1128646041801321492, guid: 43715cafc5edbf14881bff42195299ac, type: 3}
-  _spawn: {fileID: 2969499656308471780, guid: 43c9ef10098602b4a81e9d8eb5be090e, type: 3}
-  _tower: {fileID: 442181859589680083, guid: 4e916278c43ed634fadd40f5201e1e10, type: 3}
+  _viewPrefab: {fileID: 2833559565052977706, guid: 3b5daeca975764547a81432a26c63ce4, type: 3}
