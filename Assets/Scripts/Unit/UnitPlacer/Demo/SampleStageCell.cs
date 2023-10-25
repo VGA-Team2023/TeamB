@@ -1,4 +1,5 @@
 // 日本語対応
+using System;
 using TeamB_TD.StageManagement;
 using UnityEngine;
 
@@ -20,6 +21,9 @@ namespace TeamB_TD
                 private MeshRenderer _meshRenderer;
                 private UnitBehaviour _unit = null;
 
+                public event Action OnFocused;
+                public event Action OnUnfocused;
+
                 public CellStatus Status => _cellStatus;
                 public bool IsPlaced => _unit;
                 public UnitBehaviour PlacedObject => _unit;
@@ -38,10 +42,12 @@ namespace TeamB_TD
                 public void Focus()
                 {
                     _meshRenderer.material.color = _focusedColor;
+                    OnFocused?.Invoke();
                 }
                 public void Unfocus()
                 {
                     _meshRenderer.material.color = _nomalColor;
+                    OnUnfocused?.Invoke();
                 }
 
 

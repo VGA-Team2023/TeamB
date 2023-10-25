@@ -12,7 +12,9 @@ namespace TeamB_TD
             [SerializeField]
             private PlaceUnitContainer _placeUnitContainer;
             [SerializeField]
-            private PlaceUnitSelector _placeUnitSelector;
+            private PlaceUnitSelector _placeUnitSelector; // どのユニットを配置するか制御するクラス。
+            [SerializeField]
+            private Vector3 _createOffset = new Vector3(0f, 0f, -1f);
 
             private IPlayer _player;
 
@@ -34,6 +36,12 @@ namespace TeamB_TD
 
             public void Create()
             {
+                if (!_placeUnitSelector.Current)
+                {
+                    Debug.Log("配置するユニットが選択されていません");
+                    return;
+                }
+
                 var prefab = _placeUnitSelector.Current.UnitPrefab;
 
                 var cell = _player.CurrentFocusItem as IStageCell;
@@ -62,7 +70,7 @@ namespace TeamB_TD
                 }
 
                 // 必要なら引数を増やす。（座標の調整や親オブジェクトの設定など）
-                var instance = GameObject.Instantiate(prefab, cell.GameObject.transform.position + Vector3.up, Quaternion.identity, cell.GameObject.transform);
+                var instance = GameObject.Instantiate(prefab, cell.GameObject.transform.position + _createOffset, Quaternion.identity, cell.GameObject.transform);
                 instance.Initialze(cell);
                 cell.Place(instance);
                 _player.ResourceManager.UseResource(prefab.Cost);

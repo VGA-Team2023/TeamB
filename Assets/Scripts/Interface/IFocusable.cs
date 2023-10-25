@@ -1,5 +1,6 @@
 // 日本語対応
 
+using System;
 using UnityEngine;
 
 namespace TeamB_TD
@@ -11,6 +12,8 @@ namespace TeamB_TD
             GameObject GameObject { get; }
             public void Focus();
             public void Unfocus();
+            event Action OnFocused;
+            event Action OnUnfocused;
         }
     }
 }
