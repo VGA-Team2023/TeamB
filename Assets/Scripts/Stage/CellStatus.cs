@@ -5,11 +5,11 @@ namespace TeamB_TD
 {
     namespace StageManagement
     {
-        [Serializable]
-        [Flags]
+        [Serializable, Flags]
         public enum CellStatus : int
         {
-            Moveable = 1,  // 通行可能
+            None = 0,  // 通行不可 or 配置不可
+            Movable = 1,  // 通行可能
             Placeable = 2, // ユニット配置可能
         }
     }
