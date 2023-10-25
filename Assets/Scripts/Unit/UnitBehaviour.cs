@@ -9,20 +9,17 @@ namespace TeamB_TD
         /// <summary>
         /// ステージに配置可能なオブジェクトを表現する。
         /// </summary>
-        public class UnitBehaviour : MonoBehaviour
+        public abstract class UnitBehaviour : MonoBehaviour
         {
             // 配置可能オブジェクト共通基底クラス。
-            private int _yPos;
-            private int _xPos;
-            private Stage _stage;
+            public abstract string Name { get; }
+            public abstract int Cost { get; }
 
-            public int YPos => _yPos;
-            public int XPos => _xPos;
-            public Stage Stage => _stage;
+            protected IUnitPlaceable _unitPlaceable; // 自分が配置されている場所。（より良い命名があればリネームしてください。）
 
-            public void Initialze(Stage stage, int yPos, int xPos)
+            public void Initialze(IUnitPlaceable unitPlaceable)
             {
-                _stage = stage; _yPos = yPos; _xPos = xPos;
+                _unitPlaceable = unitPlaceable;
             }
         }
     }

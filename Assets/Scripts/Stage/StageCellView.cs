@@ -6,7 +6,7 @@ namespace TeamB_TD
 {
     namespace StageManagement
     {
-        public class StageCellView : MonoBehaviour
+        public class StageCellView : MonoBehaviour, IStageCellView
         {
             [SerializeField]
             private MeshRenderer _meshRenderer;
@@ -25,6 +25,7 @@ namespace TeamB_TD
             private Color _cellStatus3;
 
             IStageCell _stageCell = null;
+            public GameObject GameObject => this.gameObject;
 
             public void Initialze(IStageCell stageCell)
             {
@@ -54,6 +55,11 @@ namespace TeamB_TD
             {
                 _stageCell.Unfocus();
             }
+        }
+
+        public interface IStageCellView
+        {
+            GameObject GameObject { get; }
         }
     }
 }
