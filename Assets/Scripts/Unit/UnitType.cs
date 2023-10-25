@@ -11,6 +11,7 @@ namespace TeamB_TD
         {
             Ally = 1,
             Enemy = 2,
+            Tower = 4,
         }
     }
 }

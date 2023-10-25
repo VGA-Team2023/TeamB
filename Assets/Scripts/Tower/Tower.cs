@@ -1,51 +1,67 @@
-﻿using UnityEngine;
+﻿using System;
+using TeamB_TD.Unit;
+using TeamB_TD.Unit.Search;
+using UnityEngine;
 
 namespace TeamB_TD
 {
-    namespace Tower
+    namespace TowerControl
     {
-        public class Tower : MonoBehaviour, IDamageable
+        public class Tower : UnitBehaviour, ISearchTarget, IDamageable
         {
-            [SerializeField, Tooltip("タワーの最大HP")]
+            [SerializeField]
             private float _maxHp = 100f;
-
+            [SerializeField]
             private float _currentHp = 0f;
+            [SerializeField]
+            private UnitType _unitType;
 
-            /// <summary>
-            /// タワーが破壊されたかどうか
-            /// </summary>
-            private bool _isDestroyed = false;
+            public event Action<ISearchTarget> OnDead;
 
+            public UnitType UnitType => _unitType;
             public float CurrentHp => _currentHp;
-
-            public bool IsDestroyed => _isDestroyed;
+            public override string Name => "Tower";
+            public override int Cost => 0;
 
             void Start()
             {
                 Initialize();
             }
+
             private void Initialize()
             {
-                _isDestroyed = false;
                 _currentHp = _maxHp;
             }
 
             public void Damage(float value)
             {
+                var old = _currentHp;
                 _currentHp -= value;
 
-                if (_currentHp <= 0f)
+                if (old > 0 && _currentHp <= 0f)
                 {
-                    DestroyTower();
+                    OnDead?.Invoke(this);
+                    Debug.Log("dead tower");
                 }
             }
 
-            private void DestroyTower()
+            public IDamageable GetDamageable()
             {
-                _isDestroyed = true;
-                gameObject.SetActive(false);
+                return this;
+            }
+
+            private int _targetCount = 0;
+            public int TargetCount => _targetCount;
+
+            public void Target()
+            {
+                _targetCount++;
+            }
+
+            public void LostTarget()
+            {
+                _targetCount--;
             }
         }
-
     }
 }
