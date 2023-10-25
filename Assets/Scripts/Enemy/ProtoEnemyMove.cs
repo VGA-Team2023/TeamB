@@ -9,26 +9,21 @@ namespace TeamB_TD
     {
         public class ProtoEnemyMove : MonoBehaviour
         {
-            public int[,] StageMap = null;
-
-            private EnemyStatus _status = new EnemyStatus();
+            private EnemyStatus _status = new();
 
             private void Start()
             {
-                if (!TryGetComponent(out ProtoEnemyController controller)) return;
-
-                //StartCoroutine(MoveAlongRoute());
-
+                if (TryGetComponent(out ProtoEnemyController controller)) _status = controller.EnemyStatus;
+                else Debug.Log("ProtoEnemyController is not found"); // 参照の取得が確認出来たら削除する
             }
 
-            /// <summary></summary>
-            private IEnumerator MoveAlongRoute<T>(List<T> route) where T : MonoBehaviour
+            /// <summary>ステージのグリッドに沿って移動するコルーチン</summary>
+            /// <param name="route">移動経路</param>
+            public IEnumerator MoveAlongRoute(List<Vector3> route)
             {
                 foreach (var path in route)
                 {
-                    Vector3 dest = path.transform.position;
-                    dest.y = transform.position.y;
-                    yield return ToNextDestination(dest);
+                    yield return ToNextDestination(path); // 目的地に到着するまで待機する
                 }
             }
 
@@ -40,7 +35,7 @@ namespace TeamB_TD
 
                 while (moveVec.magnitude > 0.1f)
                 {
-                    transform.position += moveVec.normalized * _status.MoveSpeed;
+                    transform.position = moveVec.normalized * _status.MoveSpeed * Time.deltaTime;
                     moveVec = dest - transform.position;
                     yield return null;
                 }
