@@ -1,6 +1,5 @@
 // 日本語対応
 using UnityEngine;
-using TeamB_TD.StageManagement;
 
 namespace TeamB_TD
 {
