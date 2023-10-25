@@ -35,9 +35,9 @@ namespace TeamB_TD
                 _stageCell = stageCell;
 
                 Color color;
-                if (stageCell.Status.HasFlag(CellStatus.Moveable | CellStatus.Placeable))
+                if (stageCell.Status.HasFlag(CellStatus.Movable | CellStatus.Placeable))
                     color = _cellStatus3;
-                else if (stageCell.Status.HasFlag(CellStatus.Moveable))
+                else if (stageCell.Status.HasFlag(CellStatus.Movable))
                     color = _cellStatus2;
                 else if (stageCell.Status.HasFlag(CellStatus.Placeable))
                     color = _cellStatus1;
