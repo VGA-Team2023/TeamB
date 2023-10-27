@@ -18,9 +18,9 @@ namespace TeamB_TD
                 private void Update()
                 {
                     if (_manager.PlaceUnitSelector.Current != null)
-                        _text.text = "Current selected unit is " + _manager.PlaceUnitSelector.Current.UnitPrefab.Name;
+                        _text.text = "Current selected unit: " + _manager.PlaceUnitSelector.Current.UnitPrefab.Name;
                     else
-                        _text.text = "Current selected unit is None";
+                        _text.text = "Current selected unit: None";
                 }
             }
         }

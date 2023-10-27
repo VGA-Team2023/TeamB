@@ -34,7 +34,7 @@ namespace TeamB_TD
                 _player = player;
             }
 
-            public void Create()
+            public void Place()
             {
                 if (!_placeUnitSelector.Current)
                 {
@@ -72,6 +72,34 @@ namespace TeamB_TD
                 // 必要なら引数を増やす。（座標の調整や親オブジェクトの設定など）
                 var instance = GameObject.Instantiate(prefab, cell.GameObject.transform.position + _createOffset, Quaternion.identity, cell.GameObject.transform);
                 instance.Initialze(cell);
+                cell.Place(instance);
+                _player.ResourceManager.UseResource(prefab.Cost);
+            }
+
+            public void Place(UnitBehaviour prefab, IStageCell cell)
+            {
+                if (cell.Status.HasFlag(CellStatus.Placeable))
+                {
+                    Debug.Log("フォーカス中のセルにはユニットを配置できません。");
+                    return;
+                }
+
+                if (_player.ResourceManager.CurrentResource < prefab.Cost)
+                {
+                    Debug.Log("リソースが足りません。");
+                    return;
+                }
+
+                if (cell.PlacedObject)
+                {
+                    Debug.Log("そのセルには既にオブジェクトが配置されいます。");
+                    return;
+                }
+
+                // 必要なら引数を増やす。（座標の調整や親オブジェクトの設定など）
+                var instance = GameObject.Instantiate(prefab, cell.GameObject.transform.position + _createOffset, Quaternion.identity, cell.GameObject.transform);
+                instance.Initialze(cell);
+                instance.GetComponent<Collider>().enabled = true;
                 cell.Place(instance);
                 _player.ResourceManager.UseResource(prefab.Cost);
             }

@@ -11,7 +11,7 @@ namespace TeamB_TD
             [SerializeField]
             private int _maxResource;
             [SerializeField]
-            private int _chargeSpan;
+            private float _chargeSpan;
             [SerializeField]
             private IntReactiveProperty _currentResource;
 
@@ -31,7 +31,6 @@ namespace TeamB_TD
                     if (_currentResource.Value < _maxResource)
                     {
                         _currentResource.Value++;
-                        Debug.Log(_currentResource.Value);
                     }
                     yield return new WaitForSeconds(_chargeSpan);
                 }

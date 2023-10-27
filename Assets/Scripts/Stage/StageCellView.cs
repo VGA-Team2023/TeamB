@@ -1,4 +1,5 @@
 // 日本語対応
+using TeamB_TD.StageManagement.Demo;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,10 +29,14 @@ namespace TeamB_TD
             private Color _nomalColor;
             private Color _focusedColor = Color.red;
 
+            private SamplePlayer _samplePlayer = null;
             public GameObject GameObject => this.gameObject;
 
-            public void Initialize(IStageCell stageCell)
+            public IStageCell StageCell => _stageCell;
+
+            public void Initialize(SamplePlayer samplePlayer, IStageCell stageCell)
             {
+                _samplePlayer = samplePlayer;
                 _stageCell = stageCell;
 
                 Color color;
@@ -69,18 +74,22 @@ namespace TeamB_TD
 
             private void OnMouseEnter()
             {
-                _stageCell.Focus();
+                //_stageCell.Focus();
+                _samplePlayer.ChangeFocusedStageCell(this.StageCell);
             }
 
             private void OnMouseExit()
             {
-                _stageCell.Unfocus();
+                //_stageCell.Unfocus();
+                _samplePlayer.ChangeFocusedStageCell(null);
             }
         }
 
         public interface IStageCellView
         {
             GameObject GameObject { get; }
+
+            IStageCell StageCell { get; }
         }
     }
 }

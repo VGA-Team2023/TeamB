@@ -1,5 +1,6 @@
 // 日本語対応
 
+using TeamB_TD.StageManagement.Demo;
 using UnityEngine;
 
 namespace TeamB_TD
@@ -10,6 +11,8 @@ namespace TeamB_TD
         {
             [SerializeField]
             private StageCellView _viewPrefab;
+            [SerializeField]
+            private SamplePlayer _samplePlayer;
 
             private StageBlueprint _stageBlueprint = new StageBlueprint();
             private Stage _stage = new Stage();
@@ -26,7 +29,7 @@ namespace TeamB_TD
             {
                 var stageData = _stageBlueprint.GetStageData(stageNumber);
                 _stage.CreateStage(stageData);
-                _stageViewer.CreateView(_stage, _viewPrefab);
+                _stageViewer.CreateView(_samplePlayer, _stage, _viewPrefab);
             }
         }
     }

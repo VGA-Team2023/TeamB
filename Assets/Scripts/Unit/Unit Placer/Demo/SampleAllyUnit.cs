@@ -25,8 +25,11 @@ namespace TeamB_TD
                     Debug.Log("start");
                     while (!Input.GetMouseButtonUp(0))
                     {
-                        var mouseDir = DirectionUtility.GetClosestDirection(startPos, Input.mousePosition);
-                        this.transform.rotation = DirectionUtility.GetRotationFromDirection(mouseDir);
+                        if ((startPos - Input.mousePosition).sqrMagnitude > 0.01f)
+                        {
+                            var mouseDir = DirectionUtility.GetClosestDirection(startPos, Input.mousePosition);
+                            this.transform.rotation = DirectionUtility.GetRotationFromDirection(mouseDir);
+                        }
                         await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy());
                     }
                     Debug.Log("end");
