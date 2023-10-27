@@ -1,4 +1,5 @@
 // 日本語対応
+using TeamB_TD.Unit.PlaceDemo;
 using UnityEngine;
 
 namespace TeamB_TD
@@ -10,7 +11,7 @@ namespace TeamB_TD
             public class Initializer : MonoBehaviour
             {
                 [SerializeField]
-                private SamplePlayer _player;
+                private StageManagement.Demo.SamplePlayer _player;
                 [SerializeField]
                 private UnitPlaceManager _placeManager;
 

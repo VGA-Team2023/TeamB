@@ -36,13 +36,13 @@ namespace TeamB_TD
             public void OnSelected()
             {
                 // 選択時の処理をここに記述してください。
-                Debug.Log("selected");
+                //Debug.Log("selected");
             }
 
             public void OnDeselected()
             {
                 // 選択解除時の処理をここに記述してください。
-                Debug.Log("deselected");
+                //Debug.Log("deselected");
             }
         }
     }
