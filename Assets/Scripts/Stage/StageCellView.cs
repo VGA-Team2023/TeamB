@@ -30,7 +30,7 @@ namespace TeamB_TD
 
             public GameObject GameObject => this.gameObject;
 
-            public void Initialze(IStageCell stageCell)
+            public void Initialize(IStageCell stageCell)
             {
                 _stageCell = stageCell;
 
