@@ -1,9 +1,7 @@
 // 日本語対応
-using System;
 using System.Collections.Generic;
 using TeamB_TD.StageManagement;
 using TeamB_TD.UIControl;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -52,7 +50,7 @@ namespace TeamB_TD
             private void OnButtonReleased(GameObject releasedObject)
             {
                 // ドラッグビュー用のオブジェクトを破棄。
-                if (releasedObject)
+                if (releasedObject && _dragItem)
                 {
                     var cellView = releasedObject.GetComponent<IStageCellView>();
                     if (cellView != null)
@@ -63,6 +61,7 @@ namespace TeamB_TD
                 if (_dragItem)
                 {
                     GameObject.Destroy(_dragItem.gameObject);
+                    _dragItem = null;
                 }
             }
 
