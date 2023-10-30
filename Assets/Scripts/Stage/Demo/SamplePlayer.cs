@@ -18,9 +18,7 @@ namespace TeamB_TD
                 private StageController _stageController;
 
                 private IFocusable _currentFocusedStageCell;
-
                 public IResourceManager ResourceManager => _resourceManager;
-
                 public IFocusable CurrentFocusItem => _currentFocusedStageCell;
 
                 public void ChangeFocusedStageCell(IFocusable cell)

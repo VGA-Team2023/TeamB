@@ -19,6 +19,8 @@ public class SampleEnemy : MonoBehaviour, ISearchTarget, IDamageable
 
     public int TargetCount => _targetCount;
 
+    public GameObject GameObject => this.gameObject;
+
     private MeshRenderer _meshRenderer;
 
     private void Start()

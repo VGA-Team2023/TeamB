@@ -14,6 +14,7 @@ namespace TeamB_TD
                 UnitType TargetType { get; } // 標的となるユニットの種類。
                 IReadOnlyList<ISearchTarget> GetTargets(); // エリア内のターゲットを取得する処理
                 bool IsExistTarget { get; }
+                void OnDead();
             }
         }
     }

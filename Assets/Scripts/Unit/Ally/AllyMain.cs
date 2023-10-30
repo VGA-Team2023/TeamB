@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using TeamB_TD.Unit.Search;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace TeamB_TD
 {
@@ -24,8 +25,9 @@ namespace TeamB_TD
                 [SerializeReference, SubclassSelector]
                 private ISearcher _searcher;
 
+                private LineRenderer _lineRenderer;
                 private int _targetCount = 0;
-                private List<ISearchTarget> _searchResults;
+                private List<ISearchTarget> _attackSearchResults;
 
                 public AllyStatus AllyStatus => _allyStatus;
                 public ISearcher Searcher => _searcher;
@@ -36,16 +38,20 @@ namespace TeamB_TD
                 public override string Name => _name;
                 public override int Cost => _cost;
 
+                public GameObject GameObject => this ? this.gameObject : null;
+
                 private void Start()
                 {
+                    _lineRenderer = GetComponent<LineRenderer>();
                     _allyStatus.Initialize();
                     _searcher.Initialize(this.gameObject);
-                    _searchResults = new List<ISearchTarget>();
+                    _attackSearchResults = new List<ISearchTarget>();
                 }
 
                 private void Update()
                 {
                     AttackUpdate();
+                    AttackLineUpdate();
                     _allyStatus.Update(Time.deltaTime);
                 }
 
@@ -61,13 +67,31 @@ namespace TeamB_TD
                 private void AttackUpdate() // 毎フレーム実行されます。攻撃の処理を担当します。
                 {
                     // 結果コレクションと処理コレクションを分離する。
-                    _searchResults.Clear();
-                    _searchResults.AddRange(_searcher.GetTargets());
+                    _attackSearchResults.Clear();
+                    _attackSearchResults.AddRange(_searcher.GetTargets());
 
                     if (_allyStatus.IsAttackable && _searcher.IsExistTarget)
                     {
-                        _allyStatus.Attack(_searchResults);
+                        _allyStatus.Attack(_attackSearchResults);
                     }
+                }
+
+                private readonly List<Vector3> _attackLinePositions = new List<Vector3>();
+
+                private void AttackLineUpdate()
+                {
+                    _attackLinePositions.Clear();
+                    _attackLinePositions.Add(transform.position);
+
+                    var targets = _searcher.GetTargets();
+                    for (int i = 0; i < targets.Count; i++)
+                    {
+                        if (targets[i].GameObject)
+                            _attackLinePositions.Add(targets[i].GameObject.transform.position);
+                    }
+
+                    _lineRenderer.positionCount = _attackLinePositions.Count;
+                    _lineRenderer.SetPositions(_attackLinePositions.ToArray());
                 }
 
                 public void Damage(float value)
@@ -97,6 +121,10 @@ namespace TeamB_TD
                 {
                     _targetCount--;
                     // Debug.Log($"{gameObject.name} は標的から外れた。");
+                }
+                private void OnDisable()
+                {
+                    _searcher.OnDead();
                 }
             }
         }
