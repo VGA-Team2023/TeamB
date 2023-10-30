@@ -16,6 +16,8 @@ namespace TeamB_TD
             public UnitType UnitType => UnitType.Enemy;
             public int TargetCount => _targetCount;
 
+            public GameObject GameObject => this.gameObject;
+
             public event Action<ISearchTarget> OnDead;
 
             private void Start()

@@ -53,6 +53,8 @@ namespace TeamB_TD
             private int _targetCount = 0;
             public int TargetCount => _targetCount;
 
+            public GameObject GameObject => this.gameObject;
+
             public void Target()
             {
                 _targetCount++;

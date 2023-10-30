@@ -71,6 +71,15 @@ namespace TeamB_TD
                 {
                     _overLabBox.OnDrawGizmos(gameObject.transform);
                 }
+
+                public void OnDead()
+                {
+                    foreach (var old in _targets)
+                    {
+                        old.OnDead -= OnDeadTarget;
+                        old.LostTarget();
+                    }
+                }
             }
         }
     }

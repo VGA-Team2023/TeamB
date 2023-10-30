@@ -71,6 +71,15 @@ namespace TeamB_TD
                     target.LostTarget();
                     _targets.Remove(target);
                 }
+
+                public void OnDead()
+                {
+                    foreach (var old in _targets)
+                    {
+                        old.OnDead -= OnDeadTarget;
+                        old.LostTarget();
+                    }
+                }
             }
         }
     }
