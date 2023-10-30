@@ -51,7 +51,7 @@ namespace TeamB_TD
                     return;
                 }
 
-                if (cell.Status.HasFlag(CellStatus.Placeable))
+                if (!cell.Status.HasFlag(CellStatus.Placeable))
                 {
                     Debug.Log("フォーカス中のセルにはユニットを配置できません。");
                     return;
@@ -78,7 +78,7 @@ namespace TeamB_TD
 
             public void Place(UnitBehaviour prefab, IStageCell cell)
             {
-                if (cell.Status.HasFlag(CellStatus.Placeable))
+                if (!cell.Status.HasFlag(CellStatus.Placeable))
                 {
                     Debug.Log("フォーカス中のセルにはユニットを配置できません。");
                     return;

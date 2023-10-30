@@ -11,6 +11,8 @@ namespace TeamB_TD
         {
             private IStageCell[,] _stageCells;
             public IStageCell[,] StageCells => _stageCells;
+            public int Height => _stageCells.GetLength(0);
+            public int Width => _stageCells.GetLength(1);
 
             public bool IsInStage(int yPos, int xPos)
             {
@@ -58,7 +60,16 @@ namespace TeamB_TD
                 var cell = new StageCell(yPos, xPos, initialCellState);
                 _stageCells[yPos, xPos] = cell;
 
+                if (cell.Status.HasFlag(CellStatus.Tower)) _towerCell = cell;
+
                 return cell;
+            }
+
+            private IStageCell _towerCell = null;
+
+            public IStageCell GetTowerCell()
+            {
+                return _towerCell;
             }
         }
     }

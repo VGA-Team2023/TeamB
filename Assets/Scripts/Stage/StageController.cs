@@ -29,7 +29,7 @@ namespace TeamB_TD
             {
                 var stageData = _stageBlueprint.GetStageData(stageNumber);
                 _stage.CreateStage(stageData);
-                _stageViewer.CreateView(_samplePlayer, _stage, _viewPrefab);
+                _stageViewer.CreateView(this, _samplePlayer, _stage, _viewPrefab, _stage.GetTowerCell());
             }
         }
     }

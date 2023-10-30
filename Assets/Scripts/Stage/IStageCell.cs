@@ -12,6 +12,8 @@ namespace TeamB_TD
             int XPos { get; }
             CellStatus Status { get; }
             void AttachView(IStageCellView stageCellView);
+
+            IStageCell Parent { get; set; }
         }
     }
 }

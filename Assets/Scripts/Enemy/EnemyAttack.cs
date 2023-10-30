@@ -1,86 +1,56 @@
-using UnityEngine;
-using TeamB_TD.Unit;
-using TeamB_TD.Unit.Search;
-using System;
+// 日本語対応
+using Glib.InspectorExtension;
 using System.Collections.Generic;
-using System.Linq;
+using TeamB_TD.Unit.Search;
+using UnityEngine;
 
-//日本語対応
 namespace TeamB_TD
 {
     namespace Enemy
     {
-        public class EnemyAttack : MonoBehaviour, IDamageable, ISearchTarget, ISearcher
+        public class EnemyAttack : MonoBehaviour
         {
-            public UnitType UnitType => UnitType.Enemy;
+            [SerializeReference, SubclassSelector]
+            private ISearcher _searcher; // 味方ユニット補足用クラス
 
-            public event Action<ISearchTarget> OnDead;
+            private float _attackPower;
+            private float _attackInterval;
 
-            public int TargetCount => _targetCount;
-
-            public UnitType TargetType => UnitType.Enemy;
-
-            public bool IsExistTarget => _targetCount == 0;
-
-            private EnemyStatus _status = new EnemyStatus();
-
-            private int _targetCount = 0;
+            private float _attackTimer;
 
             private void Start()
             {
-                if (TryGetComponent(out EnemyController controller))
-                {
-                    _status = controller.EnemyStatus;
-                }
-                _status.Recover(_status.MaxLife);
-                
-                if(TryGetComponent(out MeshRenderer renderer)) renderer.material.color = Color.white;
+                var status = GetComponent<EnemyController>().EnemyStatus;
+                _attackInterval = status.AttackInterval;
+                _attackPower = status.AttackPower;
             }
 
-            public void Damage(float value)
+            private void Update()
             {
-                _status.Damage(value);
-                Debug.Log($"{_status.CurrentLife}");
+                _attackTimer += Time.deltaTime;
 
-                if (_status.CurrentLife <= 0)
+                if (_attackTimer > _attackInterval)
                 {
-                    OnDead?.Invoke(this);
-                    Destroy(gameObject);
-                    Debug.Log("Dead");
+                    _attackTimer -= _attackInterval;
+                    FireAll(_searcher.GetTargets());
                 }
             }
 
-            public IDamageable GetDamageable() => this;
+            private readonly List<ISearchTarget> _fireTargets = new List<ISearchTarget>();
 
-            public void Target()
+            private void FireAll(IReadOnlyList<ISearchTarget> targets)
             {
-                _targetCount++;
-
-                if (_targetCount > 0)
+                _fireTargets.Clear();
+                _fireTargets.AddRange(targets);
+                foreach (ISearchTarget target in _fireTargets)
                 {
-                    if(TryGetComponent(out MeshRenderer rend)) rend.material.color = Color.red;
+                    Fire(target);
                 }
             }
 
-            public void LostTarget()
+            private void Fire(ISearchTarget target)
             {
-                _targetCount--;
-
-                if (_targetCount <= 0)
-                {
-                    if (TryGetComponent(out MeshRenderer rend)) rend.material.color = Color.white;
-                }
-            }
-
-            public void Initialize(GameObject gameObject)
-            {
-                
-            }
-
-            public IReadOnlyList<ISearchTarget> GetTargets()
-            {
-                List<ISearchTarget> _targets = new List<ISearchTarget>() { this };
-                return _targets;
+                target.GetDamageable().Damage(_attackPower);
             }
         }
     }

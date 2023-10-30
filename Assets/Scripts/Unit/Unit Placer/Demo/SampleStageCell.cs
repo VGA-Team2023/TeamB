@@ -54,6 +54,8 @@ namespace TeamB_TD
                 // 以下は一旦不要。
                 public int YPos => throw new System.NotImplementedException();
                 public int XPos => throw new System.NotImplementedException();
+                public IStageCell Parent { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
                 public void AttachView(IStageCellView stageCellView)
                 {
                     throw new System.NotImplementedException();

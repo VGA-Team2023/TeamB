@@ -11,6 +11,7 @@ namespace TeamB_TD
         {
             public StageCell(int yPos, int xPos, int initialCellState)
             {
+                _yPos = yPos; _xPos = xPos;
                 _cellStatus = (CellStatus)initialCellState;
             }
 
@@ -35,6 +36,8 @@ namespace TeamB_TD
             public bool IsPlaced => _placedObject;
 
             public virtual GameObject GameObject { get { return _stageCellView.GameObject; } }
+
+            public IStageCell Parent { get; set; } = null;
 
             public void Place(UnitBehaviour placedObject)
             {
