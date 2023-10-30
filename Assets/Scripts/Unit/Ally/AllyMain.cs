@@ -11,8 +11,12 @@ namespace TeamB_TD
     {
         namespace Ally
         {
-            public class AllyMain : MonoBehaviour, ISearchTarget, IDamageable
+            public class AllyMain : UnitBehaviour, ISearchTarget, IDamageable
             {
+                [SerializeField]
+                private string _name;
+                [SerializeField]
+                private int _cost;
                 [SerializeField]
                 private UnitType _unitType;
                 [SerializeField]
@@ -29,9 +33,12 @@ namespace TeamB_TD
                 public event Action<ISearchTarget> OnDead;
 
                 public int TargetCount => _targetCount;
+                public override string Name => _name;
+                public override int Cost => _cost;
 
                 private void Start()
                 {
+                    _allyStatus.Initialize();
                     _searcher.Initialize(this.gameObject);
                     _searchResults = new List<ISearchTarget>();
                 }
@@ -71,6 +78,7 @@ namespace TeamB_TD
                     {
                         Debug.Log($"{gameObject.name} OnDead");
                         OnDead?.Invoke(this);
+                        Destroy(this.gameObject);
                     }
                 }
 
@@ -82,13 +90,13 @@ namespace TeamB_TD
                 public void Target()
                 {
                     _targetCount++;
-                    Debug.Log($"{gameObject.name} は標的になった。");
+                    // Debug.Log($"{gameObject.name} は標的になった。");
                 }
 
                 public void LostTarget()
                 {
                     _targetCount--;
-                    Debug.Log($"{gameObject.name} は標的から外れた。");
+                    // Debug.Log($"{gameObject.name} は標的から外れた。");
                 }
             }
         }

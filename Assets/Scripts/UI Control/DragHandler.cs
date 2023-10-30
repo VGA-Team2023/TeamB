@@ -8,11 +8,15 @@ namespace TeamB_TD
 {
     namespace UIControl
     {
+        [Serializable]
         public class DragHandler : MonoBehaviour
         {
             public event Action<GameObject> OnButtonPressed;
             public event Action<List<RaycastResult>> OnButtonPressedAll;
             public event Action<GameObject> OnButtonReleased;
+
+            [SerializeField]
+            private LayerMask _layerMask;
 
             void Update()
             {
@@ -68,7 +72,7 @@ namespace TeamB_TD
             private bool GetMouseOverlappingCollider(out RaycastHit hit)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                return Physics.Raycast(ray, out hit, Mathf.Infinity);
+                return Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask);
             }
         }
     }

@@ -8,9 +8,11 @@ namespace TeamB_TD
         [Serializable, Flags]
         public enum CellStatus : int
         {
-            None = 0,  // 通行不可 or 配置不可
+            None = 0,
             Movable = 1,  // 通行可能
             Placeable = 2, // ユニット配置可能
+            EnemySpawner = 4,
+            Tower = 8,
         }
     }
 }

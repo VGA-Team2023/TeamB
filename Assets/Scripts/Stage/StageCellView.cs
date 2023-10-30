@@ -1,4 +1,5 @@
 // 日本語対応
+using TeamB_TD.Enemy;
 using TeamB_TD.StageManagement.Demo;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +35,7 @@ namespace TeamB_TD
 
             public IStageCell StageCell => _stageCell;
 
-            public void Initialize(SamplePlayer samplePlayer, IStageCell stageCell)
+            public void Initialize(StageController stageController, SamplePlayer samplePlayer, IStageCell stageCell, IStageCell towerCell)
             {
                 _samplePlayer = samplePlayer;
                 _stageCell = stageCell;
@@ -48,6 +49,17 @@ namespace TeamB_TD
                     color = _cellStatus1;
                 else
                     color = _cellStatus0;
+
+                var enemySpawner = GetComponent<EnemySpawner>();
+                if (stageCell.Status.HasFlag(CellStatus.EnemySpawner))
+                {
+                    enemySpawner.Initialize(stageController, stageCell, towerCell);
+                    enemySpawner.enabled = true;
+                }
+                else
+                {
+                    enemySpawner.enabled = false;
+                }
 
                 _nomalColor = color;
                 if (_image) _image.color = color;

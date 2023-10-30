@@ -79,7 +79,7 @@ namespace TeamB_TD
                     if (_currentLife > _maxLife) _currentLife = _maxLife;
                 }
 
-                public void Clear()
+                public void Initialize()
                 {
                     _currentLife = _maxLife;
                     _attackIntervalTimer = _attackInterval;

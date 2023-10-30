@@ -46,7 +46,7 @@ namespace TeamB_TD
                 _currentLife = MathF.Max(_currentLife - damage, 0f);
             }
 
-            public void Recover(float recover)
+            public void Heal(float recover)
             {
                 if (_currentLife >= _maxLife) return;
                 _currentLife = MathF.Min(_currentLife + recover, _maxLife);

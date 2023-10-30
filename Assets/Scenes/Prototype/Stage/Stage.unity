@@ -391,6 +391,8 @@ MonoBehaviour:
     - {fileID: 5927951112521220565, guid: efc4824fb71f7a14a8a81231b411e2c1, type: 3}
     - {fileID: 7197886082069599709, guid: 8312c32b14498734cb0cc40e9fe52494, type: 3}
     - {fileID: 997919343848516095, guid: 0037df43bf7351a42aefb1ef2b332a98, type: 3}
+    - {fileID: 3574653149213680676, guid: 28b5b921302ab8b409b32a2ff1057289, type: 3}
+    - {fileID: 9106387315183677305, guid: 13e61b5d08a6ee0479ca260522b574fe, type: 3}
   _placeUnitSelector:
     _viewPrefab: {fileID: 2910488526545699549, guid: 51ccf04d46cee51499f1571399eb984e, type: 3}
     _viewParent: {fileID: 240277443}
@@ -1342,6 +1344,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fe71042a58d184488f981a451e1336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 255
 --- !u!114 &1905779202
 MonoBehaviour:
   m_ObjectHideFlags: 0
