@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TeamB_TD.StageManagement;
 using TeamB_TD.UIControl;
+using TeamB_TD.Unit.Ally;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -43,6 +44,7 @@ namespace TeamB_TD
                 {
                     _dragItem = GameObject.Instantiate(placeItemView.UnitPrefab);
                     _dragItem.GetComponent<Collider>().enabled = false;
+                    _dragItem.GetComponent<AllyMain>().enabled = false;
                     _placeManager.PlaceUnitSelector.OnSelectionChanged(placeItemView);
                 }
             }

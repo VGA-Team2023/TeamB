@@ -60,7 +60,10 @@ namespace TeamB_TD
                 var cell = new StageCell(yPos, xPos, initialCellState);
                 _stageCells[yPos, xPos] = cell;
 
-                if (cell.Status.HasFlag(CellStatus.Tower)) _towerCell = cell;
+                if (cell.Status.HasFlag(CellStatus.Tower))
+                {
+                    _towerCell = cell;
+                }
 
                 return cell;
             }

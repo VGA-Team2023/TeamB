@@ -1,6 +1,7 @@
 // 日本語対応
 using TeamB_TD.Player;
 using TeamB_TD.StageManagement;
+using TeamB_TD.Unit.Ally;
 using UnityEngine;
 
 namespace TeamB_TD
@@ -100,6 +101,7 @@ namespace TeamB_TD
                 var instance = GameObject.Instantiate(prefab, cell.GameObject.transform.position + _createOffset, Quaternion.identity, cell.GameObject.transform);
                 instance.Initialze(cell);
                 instance.GetComponent<Collider>().enabled = true;
+                instance.GetComponent<AllyMain>().enabled = true;
                 cell.Place(instance);
                 _player.ResourceManager.UseResource(prefab.Cost);
             }

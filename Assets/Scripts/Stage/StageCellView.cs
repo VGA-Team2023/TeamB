@@ -61,6 +61,16 @@ namespace TeamB_TD
                     enemySpawner.enabled = false;
                 }
 
+                var tower = GetComponent<TowerControl.Tower>();
+                if (stageCell.Status.HasFlag(CellStatus.Tower))
+                {
+                    tower.enabled = true;
+                }
+                else
+                {
+                    Destroy(tower);
+                }
+
                 _nomalColor = color;
                 if (_image) _image.color = color;
                 if (_spriteRenderer) _spriteRenderer.color = color;

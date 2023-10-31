@@ -9,6 +9,19 @@ namespace TeamB_TD
         [Serializable]
         public class EnemyStatus
         {
+            [SerializeField]
+            private float _maxLife = 1.0f;
+            [SerializeField]
+            private float _attackPower = 1.0f;
+            [SerializeField]
+            private float _attackInterval = 1.0f;
+            [SerializeField]
+            private float _moveSpeed = 1.0f;
+            [SerializeField]
+            private float _speedFactor = 1.0f;
+            [SerializeField]
+            private float _currentLife = 1.0f;
+
             /// <summary>最大体力</summary>
             public float MaxLife => _maxLife;
             /// <summary>現在の体力</summary>
@@ -21,19 +34,8 @@ namespace TeamB_TD
             public float MoveSpeed => _moveSpeed * _speedFactor;
             /// <summary>移動速度にかける倍率</summary>
             public float SpeedFactor { get => _speedFactor; set => _speedFactor = value; }
-
-            [Header("体力")]
-            [SerializeReference] private float _maxLife = 1.0f;
-            [Header("攻撃力")]
-            [SerializeReference] private float _attackPower = 1.0f;
-            [Header("攻撃間隔")]
-            [SerializeReference] private float _attackInterval = 1.0f;
-            [Header("移動速度")]
-            [SerializeReference] private float _moveSpeed = 1.0f;
-            [Header("移動速度にかける倍率")]
-            [SerializeReference] private float _speedFactor = 1.0f;
-            [HideInInspector]
-            [SerializeReference] private float _currentLife = 1.0f;
+            /// <summary> タワーに到着したかどうか </summary>
+            public bool IsArrivedTower { get; set; } = false;
 
             public EnemyStatus()
             {
