@@ -24,6 +24,8 @@ namespace TeamB_TD
                 private AllyStatus _allyStatus;
                 [SerializeReference, SubclassSelector]
                 private ISearcher _searcher;
+                [SerializeField]
+                private LayerMask _layerMask;
 
                 private LineRenderer _lineRenderer;
                 private int _targetCount = 0;
@@ -53,6 +55,13 @@ namespace TeamB_TD
                     AttackUpdate();
                     AttackLineUpdate();
                     _allyStatus.Update(Time.deltaTime);
+
+                    if (Input.GetMouseButtonDown(0) &&
+                        GetMouseOverlappingCollider(out RaycastHit hit) &&
+                        hit.collider.gameObject == this.gameObject)
+                    {
+                        ChangeDir();
+                    }
                 }
 
                 private void OnDrawGizmos()
@@ -64,7 +73,7 @@ namespace TeamB_TD
                     }
                 }
 
-                private async void OnMouseDown()
+                private async void ChangeDir()
                 {
                     var startPos = Input.mousePosition;
                     // Debug.Log("start");
@@ -78,6 +87,10 @@ namespace TeamB_TD
                         await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy());
                     }
                     // Debug.Log("end");
+                }
+                private void OnDisable()
+                {
+                    _searcher.OnDead();
                 }
 
                 private void AttackUpdate() // 毎フレーム実行されます。攻撃の処理を担当します。
@@ -138,9 +151,11 @@ namespace TeamB_TD
                     _targetCount--;
                     // Debug.Log($"{gameObject.name} は標的から外れた。");
                 }
-                private void OnDisable()
+
+                private bool GetMouseOverlappingCollider(out RaycastHit hit)
                 {
-                    _searcher.OnDead();
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    return Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask);
                 }
             }
         }
