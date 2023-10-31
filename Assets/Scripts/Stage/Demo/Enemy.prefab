@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1866e85ab95134e845c92d86542ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 1
+  _moveSpeed: 0.6
 --- !u!114 &8946271743053168268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,9 +151,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _status:
-    _maxLife: 10
-    _attackPower: 1
-    _attackInterval: 1
+    _maxLife: 1000
+    _attackPower: 16
+    _attackInterval: 0.2
     _moveSpeed: 1
     _speedFactor: 1
     _currentLife: 1
@@ -177,7 +177,7 @@ MonoBehaviour:
     - rid: 5811660709452054528
       type: {class: AllySampleSearch2, ns: TeamB_TD.Unit.Search, asm: Assembly-CSharp}
       data:
-        _targetType: 5
+        _targetType: 1
         _colliderTriggerHandler: {fileID: 4200492754230231053}
 --- !u!114 &3062541788186190039
 MonoBehaviour:

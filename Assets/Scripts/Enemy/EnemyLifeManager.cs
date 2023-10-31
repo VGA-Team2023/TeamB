@@ -40,6 +40,7 @@ namespace TeamB_TD
                 {
                     OnDead?.Invoke(this);
                     Debug.Log("Dead");
+                    Battle.GameManager.Current.AddCompletedEnemyCount(_status);
                     Destroy(gameObject);
                 }
             }

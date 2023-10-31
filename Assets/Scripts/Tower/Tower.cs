@@ -10,15 +10,14 @@ namespace TeamB_TD
         public class Tower : UnitBehaviour, ISearchTarget, IDamageable
         {
             [SerializeField]
-            private float _maxHp = 100f;
+            private int _maxLife = 10;
             [SerializeField]
             private float _currentHp = 0f;
-            [SerializeField]
-            private UnitType _unitType;
 
             public event Action<ISearchTarget> OnDead;
 
-            public UnitType UnitType => _unitType;
+            public int MaxLife => _maxLife;
+            public UnitType UnitType => UnitType.Tower;
             public float CurrentHp => _currentHp;
             public override string Name => "Tower";
             public override int Cost => 0;
@@ -30,7 +29,7 @@ namespace TeamB_TD
 
             private void Initialize()
             {
-                _currentHp = _maxHp;
+                _currentHp = _maxLife;
             }
 
             public void Damage(float value)

@@ -21,6 +21,8 @@ namespace TeamB_TD
             private IStageCell _cell; // スポナーにするセル。
             private IStageCell _towerCell; // タワーが配置してあるセル。
 
+            public int SpawnCount => _spawnCount;
+
             public void Initialize(StageController stageController, IStageCell spawnerCell, IStageCell towerCell)
             {
                 _stageController = stageController;

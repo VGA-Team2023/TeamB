@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 7456133164535938966}
   - component: {fileID: 2605016562232276215}
   m_Layer: 0
-  m_Name: Sample Ally (2)
+  m_Name: Sample Ally (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,10 +1,10 @@
 // 日本語対応
+using Cysharp.Threading.Tasks;
 using Glib.InspectorExtension;
 using System;
 using System.Collections.Generic;
 using TeamB_TD.Unit.Search;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace TeamB_TD
 {
@@ -62,6 +62,22 @@ namespace TeamB_TD
                     {
                         gizmoDrawer.DrawGizmos(this.gameObject);
                     }
+                }
+
+                private async void OnMouseDown()
+                {
+                    var startPos = Input.mousePosition;
+                    // Debug.Log("start");
+                    while (!Input.GetMouseButtonUp(0))
+                    {
+                        if ((startPos - Input.mousePosition).sqrMagnitude > 0.01f)
+                        {
+                            var mouseDir = DirectionUtility.GetClosestDirection(startPos, Input.mousePosition);
+                            this.transform.rotation = DirectionUtility.GetRotationFromDirection(mouseDir);
+                        }
+                        await UniTask.Yield(cancellationToken: this.GetCancellationTokenOnDestroy());
+                    }
+                    // Debug.Log("end");
                 }
 
                 private void AttackUpdate() // 毎フレーム実行されます。攻撃の処理を担当します。

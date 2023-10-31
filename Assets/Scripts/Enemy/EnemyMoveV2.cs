@@ -45,6 +45,10 @@ namespace TeamB_TD
                 {
                     _next = null;
                     _moveVector = Vector3.zero;
+                    var enemyController = GetComponent<EnemyController>();
+                    enemyController.EnemyStatus.IsArrivedTower = true;
+                    Battle.GameManager.Current.AddCompletedEnemyCount(enemyController.EnemyStatus);
+                    GameObject.Destroy(this.gameObject);
                 }
             }
 

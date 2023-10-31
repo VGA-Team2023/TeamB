@@ -508,9 +508,9 @@ MonoBehaviour:
   _unitType: 1
   _allyStatus:
     _cost: 3
-    _maxLife: 3
-    _attackPower: 3
-    _attackInterval: 3
+    _maxLife: 1000
+    _attackPower: 56
+    _attackInterval: 0.4
     _currentLife: 0
     _attackIntervalTimer: 0
   _searcher:
