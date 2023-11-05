@@ -64,6 +64,7 @@ namespace TeamB_TD
                     }
                 }
 
+#if UNITY_EDITOR
                 private void OnDrawGizmos()
                 {
                     var gizmoDrawer = _searcher as IDrawableGizmos;
@@ -72,6 +73,7 @@ namespace TeamB_TD
                         gizmoDrawer.DrawGizmos(this.gameObject);
                     }
                 }
+#endif
 
                 private async void ChangeDir()
                 {

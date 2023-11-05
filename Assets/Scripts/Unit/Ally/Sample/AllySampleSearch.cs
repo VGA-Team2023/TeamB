@@ -69,7 +69,9 @@ namespace TeamB_TD
 
                 public void DrawGizmos(GameObject gameObject)
                 {
+#if UNITY_EDITOR
                     _overLabBox.OnDrawGizmos(gameObject.transform);
+#endif
                 }
 
                 public void OnDead()
